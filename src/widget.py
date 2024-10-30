@@ -15,9 +15,14 @@ def mask_account_card(account_card_info: str) -> str:
                 name_of_card.append(element)
     return result_mask
 
+
+def get_date(date_format: str) -> str:
+    """Функция возвращает дату в нужном формате"""
+    new_date_format = date_format[8:10] + '.' + date_format[5:7] + '.' + date_format[:4]
+    return new_date_format
+
+
 if __name__ == "__main__":
     print(mask_account_card('Visa Platinum 7000792289606361'))
     print(mask_account_card('Счет 73654108430135874305'))
-    print(mask_account_card('MasterCard 7158300734726758'))
-    print(mask_account_card('Visa Classic 6831982476737658'))
-    print(mask_account_card('Visa Gold 5999414228426353'))
+    print(get_date('2024-07-02T02:26:18.671407'))
