@@ -8,4 +8,3 @@ def get_mask_account(account_number: int) -> str:
     """Функция принимает на вход номер счета и возвращает его маску"""
     account_mask = "**" + str(account_number)[-4:]
     return account_mask
-
