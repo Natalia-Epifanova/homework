@@ -2,10 +2,11 @@ from src.masks import get_mask_card_number, get_mask_account
 import pytest
 
 
-def test_get_mask_card_number():
-    assert get_mask_card_number(7000792289606361) == '7000 79** **** 6361'
-    assert get_mask_card_number(5544269931566745) == '5544 26** **** 6745'
-    assert get_mask_card_number(5555559931569999) == '5555 55** **** 9999'
+@pytest.mark.parametrize('number, expected', [(7000792289606361, '7000 79** **** 6361'),
+                                              (5544269931566745, '5544 26** **** 6745'),
+                                              (5555559931569999, '5555 55** **** 9999')])
+def test_get_mask_card_number(number, expected):
+    assert get_mask_card_number(number) == expected
 
 
 def test_get_mask_card_number_len_of_num_after_sixteen():
