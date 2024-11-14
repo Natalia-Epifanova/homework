@@ -3,7 +3,7 @@ from src.masks import get_mask_account, get_mask_card_number
 
 def mask_account_card(account_card_info: str) -> str:
     """Функция маскирует номер карты или счета"""
-    if not isinstance(account_card_info, str) or account_card_info == '':
+    if not isinstance(account_card_info, str) or account_card_info == "":
         raise TypeError("Ошибка типа данных")
 
     new_account_card_info = account_card_info.split()
@@ -26,11 +26,11 @@ def mask_account_card(account_card_info: str) -> str:
 
 def get_date(date_format: str) -> str:
     """Функция возвращает дату в нужном формате"""
-    if not isinstance(date_format, str) or date_format == '':
+    if not isinstance(date_format, str) or date_format == "":
         raise TypeError("Ошибка типа данных")
 
     if len(date_format) != 26:
-        raise ValueError('Ошибка в формате даты, должно быть 26 символов')
+        raise ValueError("Ошибка в формате даты, должно быть 26 символов")
 
     new_date_format = date_format[8:10] + "." + date_format[5:7] + "." + date_format[:4]
     return new_date_format
