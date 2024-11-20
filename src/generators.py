@@ -7,6 +7,14 @@ def filter_by_currency(dict_of_transactions: List[Dict[str, Any]], currency: str
     return filtered_dict
 
 
+def transaction_descriptions(dict_of_transactions: List[Dict[str, Any]]):
+    """Генератор, принимающий список словарей с транзакциями и возвращающий описание каждой операции по очереди"""
+    number_of_operation = 0
+    while True:
+        yield dict_of_transactions[number_of_operation]["description"]
+        number_of_operation += 1
+
+
 transactions = (
     [
         {
@@ -90,3 +98,7 @@ transactions = (
 usd_transactions = filter_by_currency(transactions, "USD")
 for i in range(2):
     print(next(usd_transactions))
+
+descriptions = transaction_descriptions(transactions)
+for i in range(5):
+    print(next(descriptions))
