@@ -15,6 +15,13 @@ def transaction_descriptions(dict_of_transactions: List[Dict[str, Any]]):
         number_of_operation += 1
 
 
+def card_number_generator(start: int, stop: int) -> str:
+    """Генератор номеров банковских карт в формате 'XXXX XXXX XXXX XXXX'"""
+    for number in range(start, stop + 1):
+        formated_card_number = '{:016}'.format(number)
+        yield ' '.join(formated_card_number[i * 4: (i + 1) * 4] for i in range(4))
+
+
 transactions = (
     [
         {
@@ -102,3 +109,6 @@ for i in range(2):
 descriptions = transaction_descriptions(transactions)
 for i in range(5):
     print(next(descriptions))
+
+for card_number in card_number_generator(1, 5):
+    print(card_number)
