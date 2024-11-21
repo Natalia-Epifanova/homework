@@ -1,32 +1,9 @@
-from typing import Any, Dict, List, Union
+import pytest
 
 
-def filter_by_currency(list_of_transactions: List[Dict[str, Any]], currency: str) -> Union[filter, str]:
-    """Функция должна возвращает итератор, выдающий транзакции, где валюта операции соответствует заданной"""
-    if len(list_of_transactions) > 0:
-        filtered_transaction = filter(lambda x: x["operationAmount"]["currency"]["code"] == currency, list_of_transactions)
-        return filtered_transaction
-    else:
-        return "Список пустой!"
-
-
-def transaction_descriptions(list_of_transactions: List[Dict[str, Any]]):
-    """Генератор, принимающий список словарей с транзакциями и возвращающий описание каждой операции по очереди"""
-    number_of_operation = 0
-    while True:
-        yield list_of_transactions[number_of_operation]["description"]
-        number_of_operation += 1
-
-
-def card_number_generator(start: int, stop: int) -> str:
-    """Генератор номеров банковских карт в формате 'XXXX XXXX XXXX XXXX'"""
-    for number in range(start, stop + 1):
-        formated_card_number = '{:016}'.format(number)
-        yield ' '.join(formated_card_number[i * 4: (i + 1) * 4] for i in range(4))
-
-
-transactions = (
-    [
+@pytest.fixture
+def transactions_list():
+    return [
         {
             "id": 939719570,
             "state": "EXECUTED",
@@ -103,15 +80,41 @@ transactions = (
             "to": "Счет 14211924144426031657"
         }
     ]
-)
 
-# usd_transactions = filter_by_currency(transactions, "EURO")
-# for i in range(2):
-#     print(next(usd_transactions))
 
-# descriptions = transaction_descriptions(transactions)
-# for i in range(5):
-#     print(next(descriptions))
-#
-# for card_number in card_number_generator(1, 5):
-#     print(card_number)
+@pytest.fixture
+def usd_transactions():
+    return {
+        "id": 939719570,
+        "state": "EXECUTED",
+        "date": "2018-06-30T02:08:58.425572",
+        "operationAmount": {
+            "amount": "9824.07",
+            "currency": {
+                "name": "USD",
+                "code": "USD"
+            }
+        },
+        "description": "Перевод организации",
+        "from": "Счет 75106830613657916952",
+        "to": "Счет 11776614605963066702"
+    }
+
+
+@pytest.fixture
+def rub_transactions():
+    return {
+        "id": 873106923,
+        "state": "EXECUTED",
+        "date": "2019-03-23T01:09:46.296404",
+        "operationAmount": {
+            "amount": "43318.34",
+            "currency": {
+                "name": "руб.",
+                "code": "RUB"
+            }
+        },
+        "description": "Перевод со счета на счет",
+        "from": "Счет 44812258784861134719",
+        "to": "Счет 74489636417521191160"
+    }
