@@ -1,8 +1,8 @@
 from collections.abc import Iterator
-from typing import Any, Dict, List, Union, Generator
+from typing import Any, Dict, Generator, List
 
 
-def filter_by_currency(list_of_transactions: List[Dict[str, Any]], currency: str) -> Iterator[Dict[str,Any]] | str:
+def filter_by_currency(list_of_transactions: List[Dict[str, Any]], currency: str) -> Iterator[Dict[str, Any]] | str:
     """Функция должна возвращает итератор, выдающий транзакции, где валюта операции соответствует заданной"""
     if not isinstance(list_of_transactions, list) or not isinstance(currency, str):
         raise TypeError("Ошибка типа данных")
@@ -102,4 +102,3 @@ transactions = [
 #
 # for card_number in card_number_generator(1, 5):
 #     print(card_number)
-
