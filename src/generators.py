@@ -3,8 +3,12 @@ from typing import Any, Dict, List, Union
 
 def filter_by_currency(list_of_transactions: List[Dict[str, Any]], currency: str) -> Union[filter, str]:
     """Функция должна возвращает итератор, выдающий транзакции, где валюта операции соответствует заданной"""
+    if not isinstance(list_of_transactions, list) or not isinstance(currency, str):
+        raise TypeError("Ошибка типа данных")
+
     if len(list_of_transactions) > 0:
-        filtered_transaction = filter(lambda x: x["operationAmount"]["currency"]["code"] == currency, list_of_transactions)
+        filtered_transaction = filter(lambda x: x["operationAmount"]["currency"]["code"] == currency,
+                                      list_of_transactions)
         return filtered_transaction
     else:
         return "Список пустой!"
@@ -12,10 +16,10 @@ def filter_by_currency(list_of_transactions: List[Dict[str, Any]], currency: str
 
 def transaction_descriptions(list_of_transactions: List[Dict[str, Any]]):
     """Генератор, принимающий список словарей с транзакциями и возвращающий описание каждой операции по очереди"""
-    number_of_operation = 0
-    while True:
-        yield list_of_transactions[number_of_operation]["description"]
-        number_of_operation += 1
+    if not isinstance(list_of_transactions, list):
+        raise TypeError("Ошибка типа данных")
+    for transaction in list_of_transactions:
+        yield transaction["description"]
 
 
 def card_number_generator(start: int, stop: int) -> str:
@@ -105,13 +109,19 @@ transactions = (
     ]
 )
 
-# usd_transactions = filter_by_currency(transactions, "EURO")
-# for i in range(2):
-#     print(next(usd_transactions))
+usd_transactions = filter_by_currency(transactions, "USD")
+try:
+    for i in range(2):
+        print(next(usd_transactions))
+except StopIteration:
+    print('Список пустой!')
 
-# descriptions = transaction_descriptions(transactions)
-# for i in range(5):
-#     print(next(descriptions))
-#
+descriptions = transaction_descriptions([])
+try:
+    for i in range(5):
+        print(next(descriptions))
+except StopIteration:
+    print('Список пустой!')
+
 # for card_number in card_number_generator(1, 5):
 #     print(card_number)
