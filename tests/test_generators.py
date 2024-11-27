@@ -1,5 +1,6 @@
 import pytest
-from src.generators import filter_by_currency, transaction_descriptions, card_number_generator, transactions
+
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions, transactions
 
 
 def test_filter_by_currency_usd(transactions_list, usd_transactions):
@@ -49,14 +50,14 @@ def test_transaction_descriptions_wrong_type():
         next(transaction_descriptions("some_sring"))
 
 
-@pytest.mark.parametrize('start, stop, expected', [(10, 12, ["0000 0000 0000 0010",
-                                                             "0000 0000 0000 0011",
-                                                             "0000 0000 0000 0012"]),
-                                                   (5, 6, ["0000 0000 0000 0005",
-                                                           "0000 0000 0000 0006"]),
-                                                   (1000, 1002, ["0000 0000 0000 1000",
-                                                                 "0000 0000 0000 1001",
-                                                                 "0000 0000 0000 1002"])])
+@pytest.mark.parametrize(
+    "start, stop, expected",
+    [
+        (10, 12, ["0000 0000 0000 0010", "0000 0000 0000 0011", "0000 0000 0000 0012"]),
+        (5, 6, ["0000 0000 0000 0005", "0000 0000 0000 0006"]),
+        (1000, 1002, ["0000 0000 0000 1000", "0000 0000 0000 1001", "0000 0000 0000 1002"]),
+    ],
+)
 def test_card_number_generator(start, stop, expected):
     result = card_number_generator(start, stop)
     assert next(result) == expected[0]

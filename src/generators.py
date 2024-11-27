@@ -9,7 +9,7 @@ def filter_by_currency(list_of_transactions: List[Dict[str, Any]], currency: str
 
     if len(list_of_transactions) > 0:
         filtered_transaction = filter(
-            lambda x: x.get("operationAmount").get("currency").get("code") == currency, list_of_transactions
+            lambda x: x["operationAmount"]["currency"]["code"] == currency, list_of_transactions
         )
         return filtered_transaction
     else:
@@ -21,7 +21,7 @@ def transaction_descriptions(list_of_transactions: List[Dict[str, Any]]) -> Gene
     if not isinstance(list_of_transactions, list):
         raise TypeError("Ошибка типа данных")
     for transaction in list_of_transactions:
-        yield transaction.get("description")
+        yield transaction["description"]
 
 
 def card_number_generator(start: int, stop: int) -> Generator[str, None, None]:
