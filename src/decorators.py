@@ -31,6 +31,7 @@ def log(filename: str | None = None) -> Callable:
 
 def start_end_function(func: Callable) -> Callable:
     """Декоратор, регистрирующий начало и конец работы функции"""
+
     def wrapper(*args: Any, **kwargs: Any) -> None:
         print(f"The beginning of the function: {func.__name__}")
         func(*args, **kwargs)
@@ -41,6 +42,7 @@ def start_end_function(func: Callable) -> Callable:
 
 def timing(func: Callable) -> Callable:
     """Декоратор, считающий время выполнения функции"""
+
     @wraps(func)
     def wrapper(*args: Any, **kwargs: Any) -> None:
         start_of_function = time()
