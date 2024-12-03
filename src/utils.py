@@ -1,5 +1,4 @@
 import json
-from typing import Any
 
 
 def financial_transactions(path: str) -> list:
@@ -15,8 +14,3 @@ def financial_transactions(path: str) -> list:
     except FileNotFoundError:
         print("There is no such file")
         return []
-
-
-# if __name__ == "__main__":
-#     res = financial_transactions("../data/operations.json")
-#     print(res)
