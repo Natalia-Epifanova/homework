@@ -10,6 +10,7 @@ logger.setLevel(logging.DEBUG)
 
 def get_mask_card_number(card_number: int) -> str:
     """Функция принимает на вход номер карты и возвращает ее маску"""
+    logger.info("Начало работы функции для маскировки номера карты")
     if not isinstance(card_number, int):
         logger.error("Ошибка типа данных")
         raise TypeError("Ошибка типа данных")
@@ -25,6 +26,7 @@ def get_mask_card_number(card_number: int) -> str:
 
 def get_mask_account(account_number: int) -> str:
     """Функция принимает на вход номер счета и возвращает его маску"""
+    logger.info("Начало работы функции для маскировки номера счета")
     if not isinstance(account_number, int):
         logger.error("Ошибка типа данных")
         raise TypeError("Ошибка типа данных")
