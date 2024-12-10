@@ -1,11 +1,11 @@
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Hashable
 
 import pandas as pd
 
 
-def reading_csv(path_to_csv: str) -> List[Dict[str, Any]]:
+def reading_csv(path_to_csv: str) -> List[Dict[Hashable, Any]]:
     """Функция для считывания финансовых операций из CSV файла"""
-    if isinstance(path_to_csv, str):
+    if not isinstance(path_to_csv, str):
         raise TypeError("Неправильный формат пути к файлу")
     try:
         csv_file_df = pd.read_csv(path_to_csv, delimiter=";")
@@ -15,9 +15,9 @@ def reading_csv(path_to_csv: str) -> List[Dict[str, Any]]:
         return []
 
 
-def reading_excel(path_to_excel: str) -> List[Dict[str, Any]]:
+def reading_excel(path_to_excel: str) -> List[Dict[Hashable, Any]]:
     """Функция для считывания финансовых операций из CSV файла"""
-    if isinstance(path_to_excel, str):
+    if not isinstance(path_to_excel, str):
         raise TypeError("Неправильный формат пути к файлу")
     try:
         excel_file_df = pd.read_excel(path_to_excel)
