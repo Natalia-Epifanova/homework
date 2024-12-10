@@ -1,6 +1,8 @@
-import pytest
-from src.reading_csv_excel import reading_csv, reading_excel
 from unittest.mock import patch
+
+import pytest
+
+from src.reading_csv_excel import reading_csv, reading_excel
 
 
 @patch("pandas.read_csv")
