@@ -76,3 +76,33 @@ def rub_transactions():
         "from": "Счет 44812258784861134719",
         "to": "Счет 74489636417521191160",
     }
+
+
+@pytest.fixture
+def transactions_list_for_test():
+    return [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+        },
+        {
+            "id": 873106923,
+            "state": "EXECUTED",
+            "operationAmount": {"amount": "43318.34", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод со счета на счет",
+        },
+        {
+            "id": 895315941,
+            "state": "EXggg",
+            "operationAmount": {"amount": "56883.54", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод с карты на карту",
+        },
+        {
+            "id": 594226727,
+            "state": "CANCELED",
+            "operationAmount": {"amount": "67314.70", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+        },
+    ]
