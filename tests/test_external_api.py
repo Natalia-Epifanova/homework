@@ -1,7 +1,6 @@
 from unittest.mock import Mock, patch
 
 import pytest
-
 from requests import RequestException
 
 from src.external_api import sum_of_transaction
