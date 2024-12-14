@@ -52,14 +52,3 @@ def timing(func: Callable) -> Callable:
         print(f"Time execution: {end_of_function - start_of_function:.6f}")
 
     return wrapper
-
-
-#
-@timing
-@start_end_function
-@log()
-def my_function(x: int | float, y: int | float) -> int | float:
-    return x + y
-
-
-my_function(1, 2)  # my_function ok
