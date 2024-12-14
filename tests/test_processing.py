@@ -112,7 +112,7 @@ def test_sort_by_date_with_the_same_date(dictionaries_with_the_same_date, type_o
     assert sort_by_date(dictionaries_with_the_same_date, type_of_sort) == expected
 
 
-def test_sort_by_date_wrong_type_of_input_data():
+def test_filter_by_state_wrong_type_of_input_data():
     with pytest.raises(TypeError):
         filter_by_state([1, 234, 5])
 

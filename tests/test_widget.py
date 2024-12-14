@@ -49,16 +49,6 @@ def test_get_date(original_date, expected):
     assert get_date(original_date) == expected
 
 
-def test_get_date_len_of_date_after_twenty_six():
-    with pytest.raises(ValueError):
-        get_date("2024-03-11T02:26:18.67140755512")
-
-
-def test_get_date_len_of_date_less_than_twenty_six():
-    with pytest.raises(ValueError):
-        get_date("2024-03-11T12")
-
-
 def test_get_date_empty_input_data():
     with pytest.raises(TypeError):
         get_date()

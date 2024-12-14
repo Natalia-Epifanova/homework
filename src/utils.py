@@ -1,7 +1,8 @@
 import json
+from typing import Any
 
 
-def financial_transactions(path: str) -> list:
+def financial_transactions(path: str) -> Any:
     """Функция возвращает список словарей с данными о финансовых транзакциях из JSON-файла"""
 
     try:
