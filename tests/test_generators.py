@@ -1,6 +1,7 @@
 import pytest
 
-from src.generators import card_number_generator, filter_by_currency, transaction_descriptions, transactions
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
+
 
 
 def test_filter_by_currency_usd(transactions_list, usd_transactions):
@@ -20,13 +21,13 @@ def test_filter_by_currency_exceptions(transactions_list):
     assert result == "Список пустой!"
 
 
-def test_filter_by_currency_wrong_type():
+def test_filter_by_currency_wrong_type(transactions_list):
     with pytest.raises(TypeError):
         next(filter_by_currency(1, [4, 3, 2]))
     with pytest.raises(TypeError):
         next(filter_by_currency("some_sring", 2))
     with pytest.raises(TypeError):
-        next(filter_by_currency(transactions, 2))
+        next(filter_by_currency(transactions_list, 2))
     with pytest.raises(TypeError):
         next(filter_by_currency(521, "USD"))
 
